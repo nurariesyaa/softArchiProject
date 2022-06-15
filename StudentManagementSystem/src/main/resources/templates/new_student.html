@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="ISO-8859-1">
+        <style>
+            body{
+                font-family: Calibri, Helvetica, sans-serif;
+                background-color: pink;
+            }
+            .container {
+                background-color: #fff;
+                border-radius: 10px;
+                margin: auto;
+                width: 500px;
+                padding: 50px;
+                padding-right: 80px;
+                padding-top: 10px;
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+                    0 10px 10px rgba(0,0,0,0.22);
+
+            }
+
+            body {
+                background-color: cadetblue;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 100% 100%;
+            }
+
+            input[type=text], input[type=password], textarea {
+                width: 100%;
+                padding: 15px;
+                margin: 5px 0 22px 0;
+                display: inline-block;
+                border: none;
+                background: #f1f1f1;
+            }
+            input[type=text]:focus, input[type=password]:focus {
+                background-color: orange;
+                outline: none;
+            }
+
+            div {
+                padding: 10px 0;
+            }
+
+            hr {
+                border: 1px solid #f1f1f1;
+                margin-bottom: 25px;
+            }
+            button{
+                background-color: #4CAF50;
+                color: white;
+                padding: 16px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+                opacity: 0.9;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+  
+            }
+            button:hover {
+                background-color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <form th:action="@{/saveStudent}" th:object="${student}" method="POST">
+
+            <div class="container">
+                <h1><center>Student Registration Form</center></h1>
+                <center><a th:href = "@{/}"> Back to Student List</a></center>
+                <hr>
+                <label> Student Name </label> 
+                <input type="text" th:field="*{name}" name="studname" size="15" required /> 
+                
+                <label> I/C Number: </label> 
+                <input type="text" th:field="*{icNo}" required /> 
+                
+                <label> Matric Number: </label>  
+                <input type="text" th:field="*{matricNo}" size="15" required /> 
+                
+                <label> Age: </label>  
+                <input type="text" th:field="*{age}" size="15" required /> 
+                
+                <label> 
+                    Phone :
+                </label>
+                <input type="text" th:field="*{phoneNo}"  value="+60" size="2"/> 
+                
+                <label>Student Address :</label>
+                <textarea cols="80" rows="5" th:field="*{homeAddr}" required></textarea>
+
+                <label>Guardian Name :</label>
+                <input type="text" th:field="*{guardianName}" size="15" required /> 
+                
+                <label>Guardian Phone Number :</label>
+                <input type="text" th:field="*{guardianPhoneNo}" size="2"/> 
+                
+                <label>Guardian Address :</label>
+                <textarea cols="80" rows="5" th:field="*{guardianAddr}" required></textarea>
+
+                <button type="submit" value="Add" style="font-size: 20px; ">ADD</button>
+            </div>
+        </form>
+    </body>
+</html>

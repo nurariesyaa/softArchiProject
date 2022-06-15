@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta charset="ISO-8859-1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body{
+                font-family: Calibri, Helvetica, sans-serif;
+                background-color: pink;
+            }
+            .container {
+                background-color: #fff;
+                border-radius: 10px;
+                margin: auto;
+                width: 1070px;
+                padding: 50px;
+                padding-right: 80px;
+                padding-top: 10px;
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+                    0 10px 10px rgba(0,0,0,0.22);
+
+            }
+
+            body {
+                background-color: cadetblue;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 100% 100%;
+            }
+
+            input[type=text], input[type=password], textarea {
+                width: 100%;
+                padding: 15px;
+                margin: 5px 0 22px 0;
+                display: inline-block;
+                border: none;
+                background: #f1f1f1;
+            }
+            input[type=text]:focus, input[type=password]:focus {
+                background-color: orange;
+                outline: none;
+            }
+
+            div {
+                padding: 10px 0;
+            }
+
+            hr {
+                border: 1px solid #f1f1f1;
+                margin-bottom: 25px;
+            }
+            button{
+                outline: none;
+  
+            }
+            button:hover {
+                background-color: white;
+            }
+
+            table, th, td{
+                align-items: center;
+                border: 2px solid black;
+                border-collapse: collapse;
+                padding: 10px;
+
+            }
+            .action{
+                margin: 15px;
+            }
+            
+            a:link { 
+            	text-decoration: none; 
+            	color: black;
+            }
+			a:visited { 
+				text-decoration: none; 
+				color: black;
+			}
+			a:hover { 
+				text-decoration: none;
+				color: black; 
+			}
+			a:active { 
+				text-decoration: none; 
+				color: black;
+			}
+            
+        </style>
+    </head>
+    <body>
+        <form>
+
+            <div class="container">
+                <center>  <h1> Student List</h1> </center>
+                <center><a th:href = "@{/showNewStudentForm}" class="btn btn-primary btn-sm mb-3"> Add Student </a></center>
+                <hr>      
+                <table>
+                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=matricNo&sortDir=' + ${reverseSortDir}}">
+							Matric No</a></th>
+                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
+							Name</a></th>
+                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=icNo&sortDir=' + ${reverseSortDir}}">
+							I/C Number</a></th>
+                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=age&sortDir=' + ${reverseSortDir}}">
+							Age</a></th>
+                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=phoneNo&sortDir=' + ${reverseSortDir}}">
+							Phone No</a></th>
+                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=homeAddr&sortDir=' + ${reverseSortDir}}">
+							Home Address</a></th>
+                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=guardianName&sortDir=' + ${reverseSortDir}}">
+							Guardian Name</a></th>
+                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=guardianPhoneNo&sortDir=' + ${reverseSortDir}}">
+							Guardian Phone No</a></th>
+				<th><a th:href="@{'/page/' + ${currentPage} + '?sortField=guardianAddr&sortDir=' + ${reverseSortDir}}">
+							Guardian Address</a></th>
+                <th>Action</th>
+                <tr th:each="student : ${listStudents}"> 
+					<td th:text="${student.matricNo}"></td>
+					<td th:text="${student.name}"></td>
+					<td th:text="${student.icNo}"></td>
+					<td th:text="${student.age}"></td>
+					<td th:text="${student.phoneNo}"></td>
+					<td th:text="${student.homeAddr}"></td>
+					<td th:text="${student.guardianName}"></td>
+					<td th:text="${student.guardianPhoneNo}"></td>
+					<td th:text="${student.guardianAddr}"></td>
+                    <td class="action">
+                        <a th:href="@{/showFormForUpdate/{id}(id=${student.id})}"><i style="font-size:24px; color: blue" class="fa">&#xf044;</i></a>
+                        <a th:href="@{/deleteStudent/{id}(id=${student.id})}"><i style="font-size:24px; color: red" class="fa">&#xf014;</i></a>
+                    </td>
+                </tr>
+            </table>   
+            </div>
+    </body>
+</html>
+
